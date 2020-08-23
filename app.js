@@ -84,12 +84,11 @@ let member = message.guild.members.get('659838505991798825');
                 name: olusacakrol,
                 color: 'RANDOM',
                 permission: [] 
-            }).then(member.addRole(muterole.id));
+            }).then(member.addRole(muterole.id).then(message.channel.send(`rolu actım tamam abu eheheh muah bye`))});
         } catch(e) {
             console.log(e.message);
         }
-    }.then(message.channel.send(`rolu actım tamam abu eheheh muah bye`));
-}
+    }
   }
 
 client.login(config.token);
