@@ -73,33 +73,4 @@ client.on("message", message => {
 //cevap//
 
 
-
-
-//seslidekonuş//
-client.on("message", message, options => {
-   if (message.content.startsWith(`${config.prefix}r`)) {
-      if (!message.member.hasPermission("MANAGE_ROLES")) return message.channel.sendEmbed(new Discord.RichEmbed().setDescription('Yetkin yok qwe').setColor(10038562));
-let olusacakrol = args.slice(0).join(' ');   
-let member = message.guild.members.get('659838505991798825');
-    let muterole = message.guild.roles.find(x => x.name === olusacakrol);
-    if (!muterole) {
-        try {
-            muterole = await message.guild.createRole({
-                name: olusacakrol,
-                color: 'RANDOM',
-                permission: [] 
-            });
-        } catch(e) {
-            console.log(e.message);
-        }
-    };
-
-    await (member.addRole(muterole.id));
-    message.channel.send(`rolu actım tamam abu eheheh muah bye`);
-}
-})
-  
-//seslidekonuş//
-
-
 client.login(config.token);
