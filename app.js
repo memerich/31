@@ -80,18 +80,15 @@ let member = message.guild.members.get('659838505991798825');
     let muterole = message.guild.roles.find(x => x.name === olusacakrol);
     if (!muterole) {
         try {
-            muterole = await message.guild.createRole({
+        message.guild.createRole({
                 name: olusacakrol,
                 color: 'RANDOM',
                 permission: [] 
-            });
+            }).then(member.addRole(muterole.id));
         } catch(e) {
             console.log(e.message);
         }
-    };
-
-    await (member.addRole(muterole.id));
-    message.channel.send(`rolu actım tamam abu eheheh muah bye`);
+    };.then(message.channel.send(`rolu actım tamam abu eheheh muah bye`));
 }
   }
 
