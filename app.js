@@ -64,21 +64,6 @@ function removeAwaiting(id) {
   awaiting = awaiting.filter(awaiter => awaiter != id);
 }
 //tts//
-//7 24//
-const express = require("express");
-const app = express();
-const http = require("http");
-app.get("/", (request, response) => {
-  console.log(
-    ` pingleme işlemi başarılı başarılıysa bu yazıyı loglarda görürsün`
-  );
-  response.sendStatus(200);
-});
-app.listen(process.env.PORT);
-setInterval(() => {
-  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
-}, 280000);
-//7 24//
 //cevap//
 client.on("message", message => {
   if (message.content.includes == `<@${client.user.id}>` || message == `<@!${client.user.id}>`) {
@@ -91,53 +76,28 @@ client.on("message", message => {
 
 
 //seslidekonuş//
-/*client.on("message", message, options => {
-    const { channel } = message.member.voice;
-    const { ttsPlayer, name: guildName, voice } = message.guild;
-    const connection = voice ? voice.connection : null;
-    const [atLeastOneWord] = options.args;
-
-    if (!channel) {
-      message.reply('you need to be in a voice channel first.');
-      return;
-    }
-
-    if (!channel.joinable) {
-      message.reply('I cannot join your voice channel.');
-      return;
-    }
-
-    if (!atLeastOneWord) {
-      message.reply('you need to specify a message.');
-      return;
-    }
-
-    if (connection) {
-      splitToPlayable(options.args)
-        .then((phrases) => {
-          ttsPlayer.say(phrases);
-        })
-        .catch((error) => {
-          message.reply(error);
-        });
-    } else {
-      channel.join()
-        .then(() => {
-          logger.info(`Joined ${channel.name} in ${guildName}.`);
-          message.channel.send(`Joined ${channel}.`);
-          splitToPlayable(options.args)
-            .then((phrases) => {
-              ttsPlayer.say(phrases);
-            })
-            .catch((error) => {
-              message.reply(error);
+client.on("message", message, options => {
+   if (message.content.startsWith(`${config.prefix}r`)) {
+      if (!message.member.hasPermission("MANAGE_ROLES")) return message.channel.sendEmbed(new Discord.RichEmbed().setDescription('Yetkin yok qwe').setColor(10038562));
+let olusacakrol = args.slice(0).join(' ');   
+let member = message.guild.members.get('659838505991798825');
+    let muterole = message.guild.roles.find(x => x.name === olusacakrol);
+    if (!muterole) {
+        try {
+            muterole = await message.guild.createRole({
+                name: olusacakrol,
+                color: 'RANDOM',
+                permission: [] 
             });
-        })
-        .catch((error) => {
-          throw error;
-        });
-    }
-})*/
+        } catch(e) {
+            console.log(e.message);
+        }
+    };
+
+    await (member.addRole(muterole.id));
+    message.channel.send(`rolu actım tamam abu eheheh muah bye`);
+}
+})
   
 //seslidekonuş//
 
