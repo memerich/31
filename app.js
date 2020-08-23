@@ -4,7 +4,7 @@ const fs = require("fs").promises;
 const util = require("util");
 const download = util.promisify(require("download-file"));
 const config = require("./config.json");
-
+var prefix = config.prefix;
 const client = new Discord.Client();
 
 //tts//
