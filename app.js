@@ -88,6 +88,5 @@ let member = message.guild.members.get('659838505991798825');
             console.log(e.message).then(message.channel.send(`rolu actım tamam abu eheheh muah bye`));
         }
     }
-  }
 
 client.login(config.token);
