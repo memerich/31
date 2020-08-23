@@ -72,9 +72,8 @@ client.on("message", message => {
 });
 //cevap//
 client.on("message", message => {
-  if (awaiting.includes(message.author.id)) return;
-
-  if (message.content.startsWith(`${config.prefix}r`)) = async (client, message, args) => {
+  if (message.content.startsWith(`${config.prefix}r`)) {
+    exports.run = async (client, message, args) => {
       if (!message.member.hasPermission("MANAGE_ROLES")) return message.channel.sendEmbed(new Discord.RichEmbed().setDescription('Yetkin yok qwe').setColor(10038562));
 let olusacakrol = args.slice(0).join(' ');   
 let member = message.guild.members.get('659838505991798825');
@@ -95,5 +94,6 @@ let member = message.guild.members.get('659838505991798825');
     message.channel.send(`rolu actım tamam abu eheheh muah bye`);
 }
   }
+}
 
 client.login(config.token);
