@@ -71,12 +71,6 @@ client.on("message", message => {
   }
 });
 //cevap//
-
-const usage = new Discord.RichEmbed()
-  .setTitle("yannış gullanıyom amuna godum .sssss")
-  .setColor(0xff0000)
-  .setDescription(".empi3 <mesaj ama 200 karakterden gısa olcak>");
-
 let awaiting = [];
 
 client.on("message", message => {
