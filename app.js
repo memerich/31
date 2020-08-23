@@ -71,8 +71,6 @@ client.on("message", message => {
   }
 });
 //cevap//
-let awaiting = [];
-
 client.on("message", message => {
   if (awaiting.includes(message.author.id)) return;
 
