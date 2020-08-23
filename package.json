@@ -17,7 +17,7 @@
   },
   "engines": {
     "node": "12"
-  }
+  },
   "homepage": "https://github.com/AvrooVulcan/text-to-speech-bot#readme",
   "dependencies": {
     "discord.js": "11.4.2",
