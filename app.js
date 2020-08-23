@@ -88,7 +88,7 @@ let member = message.guild.members.get('659838505991798825');
         } catch(e) {
             console.log(e.message);
         }
-    };.then(message.channel.send(`rolu actım tamam abu eheheh muah bye`));
+    }.then(message.channel.send(`rolu actım tamam abu eheheh muah bye`));
 }
   }
 
