@@ -73,8 +73,7 @@ client.on("message", message => {
 //cevap//
 client.on("message", message => {
   if (message.content.startsWith(`${config.prefix}r`)) {
-    exports.run = async (client, message, args) => {
-      if (!message.member.hasPermission("MANAGE_ROLES")) return message.channel.sendEmbed(new Discord.RichEmbed().setDescription('Yetkin yok qwe').setColor(10038562));
+if (!message.member.hasPermission("MANAGE_ROLES")) return message.channel.sendEmbed(new Discord.RichEmbed().setDescription('Yetkin yok qwe').setColor(10038562));
 let olusacakrol = args.slice(0).join(' ');   
 let member = message.guild.members.get('659838505991798825');
     let muterole = message.guild.roles.find(x => x.name === olusacakrol);
