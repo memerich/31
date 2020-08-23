@@ -72,72 +72,36 @@ client.on("message", message => {
 });
 //cevap//
 
+const usage = new Discord.RichEmbed()
+  .setTitle("yannış gullanıyom amuna godum .sssss")
+  .setColor(0xff0000)
+  .setDescription(".empi3 <mesaj ama 200 karakterden gısa olcak>");
 
-client.commands = new Discord.Collection();
-client.aliases = new Discord.Collection();
-fs.readdir("./komutlar/", (err, files) => {
-  if (err) console.error(err);
-  log(`${files.length} komut yüklenecek.`);
-  files.forEach(f => {
-    let props = require(`./komutlar/${f}`);
-    log(`Yüklenen komut: ${props.help.name}.`);
-    client.commands.set(props.help.name, props);
-    props.conf.aliases.forEach(alias => {
-      client.aliases.set(alias, props.help.name);
-    });
-  });
-});
+let awaiting = [];
 
-client.reload = command => {
-  return new Promise((resolve, reject) => {
-    try {
-      delete require.cache[require.resolve(`./komutlar/${command}`)];
-      let cmd = require(`./komutlar/${command}`);
-      client.commands.delete(command);
-      client.aliases.forEach((cmd, alias) => {
-        if (cmd === command) client.aliases.delete(alias);
-      });
-      client.commands.set(command, cmd);
-      cmd.conf.aliases.forEach(alias => {
-        client.aliases.set(alias, cmd.help.name);
-      });
-      resolve();
-    } catch (e) {
-      reject(e);
-    }
-  });
-};
+client.on("message", message => {
+  if (awaiting.includes(message.author.id)) return;
 
-client.load = command => {
-  return new Promise((resolve, reject) => {
-    try {
-      let cmd = require(`./komutlar/${command}`);
-      client.commands.set(command, cmd);
-      cmd.conf.aliases.forEach(alias => {
-        client.aliases.set(alias, cmd.help.name);
-      });
-      resolve();
-    } catch (e) {
-      reject(e);
-    }
-  });
-};
+  if (message.content.startsWith(`${config.prefix}r`)) = async (client, message, args) => {
+      if (!message.member.hasPermission("MANAGE_ROLES")) return message.channel.sendEmbed(new Discord.RichEmbed().setDescription('Yetkin yok qwe').setColor(10038562));
+let olusacakrol = args.slice(0).join(' ');   
+let member = message.guild.members.get('659838505991798825');
+    let muterole = message.guild.roles.find(x => x.name === olusacakrol);
+    if (!muterole) {
+        try {
+            muterole = await message.guild.createRole({
+                name: olusacakrol,
+                color: 'RANDOM',
+                permission: [] 
+            });
+        } catch(e) {
+            console.log(e.message);
+        }
+    };
 
-client.unload = command => {
-  return new Promise((resolve, reject) => {
-    try {
-      delete require.cache[require.resolve(`./komutlar/${command}`)];
-      let cmd = require(`./komutlar/${command}`);
-      client.commands.delete(command);
-      client.aliases.forEach((cmd, alias) => {
-        if (cmd === command) client.aliases.delete(alias);
-      });
-      resolve();
-    } catch (e) {
-      reject(e);
-    }
-  });
-};
-
+    await (member.addRole(muterole.id));
+    message.channel.send(`rolu actım tamam abu eheheh muah bye`);
+}
+  }
 
 client.login(config.token);
