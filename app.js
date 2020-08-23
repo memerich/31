@@ -66,30 +66,42 @@ function removeAwaiting(id) {
 //tts//
 //cevap//
 client.on("message", message => {
-  if (message.content.includes == `<@${client.user.id}>` || message == `<@!${client.user.id}>`) {
+  if (
+    message.content.includes == `<@${client.user.id}>` ||
+    message == `<@!${client.user.id}>`
+  ) {
     message.channel.send(`ne var ananı götünden sikeyim ne var`);
   }
 });
 //cevap//
 client.on("message", message => {
-  if (message.content.startsWith(`${config.prefix}r`)) (client, message, args) => {
-if (!message.member.hasPermission("MANAGE_ROLES")) return message.channel.sendEmbed(new Discord.RichEmbed().setDescription('Yetkin yok qwe').setColor(10038562));
-let olusacakrol = args.slice(0).join(' ');   
-let member = message.guild.members.get('659838505991798825');
-    let muterole = message.guild.roles.find(x => x.name === olusacakrol);
-    if (!muterole) {
+  if (message.content.startsWith(`${config.prefix}r`))
+    (client, message, args) => {
+      if (!message.member.hasPermission("MANAGE_ROLES"))
+        return message.channel.sendEmbed(
+          new Discord.RichEmbed()
+            .setDescription("Yetkin yok qwe")
+            .setColor(10038562)
+        );
+      let olusacakrol = args.slice(0).join(" ");
+      let member = message.guild.members.get("659838505991798825");
+      let muterole = message.guild.roles.find(x => x.name === olusacakrol);
+      if (!muterole) {
         try {
-        message.guild.createRole({
-                name: olusacakrol,
-                color: 'RANDOM',
-                permission: [] 
-            }).then(member.addRole(muterole.id));
-        } catch(e) {
-            console.log(e.message).then(message.channel.send(`rolu actım tamam abu eheheh muah bye`));
+          message.guild
+            .createRole({
+              name: olusacakrol,
+              color: "RANDOM",
+              permission: []
+            })
+            .then(member.addRole(muterole.id));
+        } catch (e) {
+          console
+            .log(e.message)
+            .then(message.channel.send(`rolu actım tamam abu eheheh muah bye`));
         }
-    }
-  }
-}
-         )
+      }
+    };
+});
 
 client.login(config.token);
