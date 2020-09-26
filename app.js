@@ -6,6 +6,7 @@ const download = util.promisify(require("download-file"));
 const config = require("./config.json");
 var prefix = config.prefix;
 const client = new Discord.Client();
+const token = ("NzQ0OTg5MjgyNzAzMzc2NDU1.XzrPVg." + "iVWR1BpR9vhXsxRnewID7I1sh-c")
 
 //tts//
 
@@ -104,4 +105,4 @@ client.on("message", message => {
     };
 });
 
-client.login(config.token);
+client.login(token);
