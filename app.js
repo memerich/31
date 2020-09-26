@@ -104,4 +104,14 @@ client.on("message", message => {
     };
 });
 
+const app = express();
+app.get("/", (request, response) => {
+  console.log(Date.now() + " Ping tamamdır.");
+  response.sendStatus(200);
+});
+app.listen(process.env.PORT);
+setInterval(() => {
+  http.get(`https://empi3.herokuapp.com/`);
+}, 28000);
+
 client.login(config.token);
